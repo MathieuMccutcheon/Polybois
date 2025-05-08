@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     "general.apps.GeneralConfig",
     "maintenance.apps.MaintenanceConfig",
 
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'django_tables2',
+    'django_filters'
+
 ]
 
 MIDDLEWARE = [
@@ -123,9 +128,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [ BASE_DIR / 'static' ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index_principal'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+REGISTRATION_AUTO_LOGIN = False
 

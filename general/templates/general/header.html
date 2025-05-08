@@ -1,0 +1,46 @@
+{% load static %}
+<header class="navbar navbar-expand-lg navbar-dark py-2" style="background: linear-gradient(135deg, #2e0201, #540d07, #2e0201); font-family: 'DM Sans', sans-serif;">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+        <!-- Zone gauche vide pour équilibrer -->
+        <div style="width: 200px;"></div>
+
+        <!-- Titre centré -->
+        <div class="text-center flex-grow-1">
+            {% if titre_page %}
+            <h3 class="text-white fw-bold mb-0">{{ titre_page }}</h3>
+            {% endif %}
+        </div>
+
+        <!-- Zone droite : Boutons + Menu utilisateur -->
+        <div class="d-flex align-items-center gap-3" style="min-width: 200px;">
+            <a href="javascript:history.back()" class="btn btn-sm btn-outline-light">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+            <a href="{% url 'index_principal' %}" class="btn btn-sm btn-outline-light">
+                <i class="fas fa-home"></i> Accueil
+            </a>
+
+            <!-- Menu utilisateur -->
+            <ul class="navbar-nav ms-2 mb-0">
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li>
+                                <form method="POST" action="{% url 'logout' %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item">Déconnexion</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</header>
+
